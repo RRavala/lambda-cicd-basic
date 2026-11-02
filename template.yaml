@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Minimal Lambda function deployed entirely through GitHub Actions + SAM.
+
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+
+Outputs:
+  FunctionName:
+    Value: !Ref HelloFunction
+  FunctionArn:
+    Value: !GetAtt HelloFunction.Arn
